@@ -24,7 +24,7 @@
     <main id="inventory" class="main-area">
       <header class="topbar"><div class="breadcrumb">Inventory <span>/</span> Demo units</div><div class="top-right"><span class="top-badge">OSTH</span><span class="avatar">OS</span></div></header>
       <div class="content">
-        <div class="page-heading"><div><p class="eyebrow">EQUIPMENT OVERVIEW</p><h1>ทะเบียนอุปกรณ์สาธิต</h1><p class="heading-desc">ดูอุปกรณ์เป็นชุด พร้อมรายการย่อยและผลตรวจจากไฟล์ต้นฉบับ</p></div><div class="date-tag">SOURCE · 25 SEP 2025</div></div>
+        <div class="page-heading"><div><p class="eyebrow">EQUIPMENT OVERVIEW</p><h1>ทะเบียนอุปกรณ์สาธิต</h1><p class="heading-desc">ดูอุปกรณ์เป็นชุด พร้อมรายการย่อยและผลตรวจจากไฟล์ต้นฉบับ</p></div><div class="date-tag">DATA · MULTIPLE WORKBOOKS</div></div>
 
         <section class="metrics" aria-label="ภาพรวมรายการ">
           <div class="metric"><span class="metric-icon blue">▦</span><div><div class="metric-label">ชุดอุปกรณ์ทั้งหมด</div><strong id="totalGroups">—</strong><small>ชุดจากทะเบียนหลัก</small></div></div>
@@ -39,6 +39,7 @@
             <label class="select-wrap"><span class="sr-only">เลือกปีหรือกลุ่ม</span><select id="year"><option value="all">ทุกปี / ทุกกลุ่ม</option></select></label>
             <label class="select-wrap"><span class="sr-only">เลือกสถานะ</span><select id="status"><option value="all">ทุกสถานะ</option><option value="NG">มีรายการ NG</option><option value="OK">สถานะ OK</option><option value="UNKNOWN">ยังไม่ระบุ</option></select></label>
             <label class="select-wrap"><span class="sr-only">เลือกผู้รับผิดชอบ</span><select id="owner"><option value="all">ผู้รับผิดชอบทั้งหมด</option></select></label>
+            <label class="select-wrap"><span class="sr-only">เลือกรายการที่มีรูป</span><select id="photoFilter"><option value="all">ทุกรายการ</option><option value="with">มีรูปภาพ</option></select></label>
             <button id="clear" class="clear-button" type="button">ล้างตัวกรอง</button>
           </div>
           <div id="resultInfo" class="result-info" aria-live="polite"></div>
@@ -51,6 +52,7 @@
   </div>
   <div id="overlay" class="overlay" hidden></div>
   <aside id="drawer" class="drawer" aria-label="รายละเอียดชุดอุปกรณ์" aria-modal="true" role="dialog" hidden><div id="drawerContent"></div></aside>
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="ดูรูปอุปกรณ์ขนาดใหญ่" hidden><button id="closeLightbox" class="lightbox-close" type="button" aria-label="ปิดรูป">×</button><img id="lightboxImage" alt="" /><p id="lightboxCaption"></p></div>
   <script src="data/inventory.js"></script>
   <script src="app.js"></script>
 </body>

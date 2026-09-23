@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#102842" />
+  <meta name="description" content="ค้นหาทะเบียนอุปกรณ์สาธิต แยกตามชุด รุ่น รหัส และสถานะ" />
+  <title>Demo Inventory · ONO SOKKI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">O<span class="brand-stroke"></span></span><div><strong>ONO SOKKI</strong><small>THAILAND · DEMO</small></div></div>
+      <div class="side-label">WORKSPACE</div>
+      <a href="#inventory" class="nav-link active"><span class="nav-icon">▦</span> ทะเบียนอุปกรณ์ <span class="nav-chevron">›</span></a>
+      <div class="sidebar-bottom"><span class="live-dot"></span> ข้อมูลจาก Excel ที่แนบ<br /><span class="sidebar-sub">ตัวอย่างเว็บแอป · อ่านอย่างเดียว</span></div>
+    </aside>
+
+    <main id="inventory" class="main-area">
+      <header class="topbar"><div class="breadcrumb">Inventory <span>/</span> Demo units</div><div class="top-right"><span class="top-badge">OSTH</span><span class="avatar">OS</span></div></header>
+      <div class="content">
+        <div class="page-heading"><div><p class="eyebrow">EQUIPMENT OVERVIEW</p><h1>ทะเบียนอุปกรณ์สาธิต</h1><p class="heading-desc">ดูอุปกรณ์เป็นชุด พร้อมรายการย่อยและผลตรวจจากไฟล์ต้นฉบับ</p></div><div class="date-tag">SOURCE · 25 SEP 2025</div></div>
+
+        <section class="metrics" aria-label="ภาพรวมรายการ">
+          <div class="metric"><span class="metric-icon blue">▦</span><div><div class="metric-label">ชุดอุปกรณ์ทั้งหมด</div><strong id="totalGroups">—</strong><small>ชุดจากทะเบียนหลัก</small></div></div>
+          <div class="metric"><span class="metric-icon cyan">◈</span><div><div class="metric-label">รายการภายในชุด</div><strong id="totalItems">—</strong><small>รายการย่อยในแต่ละชุด</small></div></div>
+          <div class="metric"><span class="metric-icon amber">!</span><div><div class="metric-label">พบสถานะ NG</div><strong id="totalNg">—</strong><small>ชุดที่มี NG ในทะเบียนหรือผลตรวจ</small></div></div>
+        </section>
+
+        <section class="workspace">
+          <div class="section-head"><div><p class="eyebrow">EXPLORE INVENTORY</p><h2>รายการชุดอุปกรณ์ <span id="shownCount"></span></h2></div><div class="section-tip">คลิกการ์ดเพื่อดูอุปกรณ์ในชุด</div></div>
+          <div class="filters">
+            <label class="search-box"><span aria-hidden="true">⌕</span><input id="search" type="search" autocomplete="off" placeholder="ค้นหารุ่น, S/N, Asset No., ชื่ออุปกรณ์..." aria-label="ค้นหารายการ" /><kbd>/</kbd></label>
+            <label class="select-wrap"><span class="sr-only">เลือกปีหรือกลุ่ม</span><select id="year"><option value="all">ทุกปี / ทุกกลุ่ม</option></select></label>
+            <label class="select-wrap"><span class="sr-only">เลือกสถานะ</span><select id="status"><option value="all">ทุกสถานะ</option><option value="NG">มีรายการ NG</option><option value="OK">สถานะ OK</option><option value="UNKNOWN">ยังไม่ระบุ</option></select></label>
+            <label class="select-wrap"><span class="sr-only">เลือกผู้รับผิดชอบ</span><select id="owner"><option value="all">ผู้รับผิดชอบทั้งหมด</option></select></label>
+            <button id="clear" class="clear-button" type="button">ล้างตัวกรอง</button>
+          </div>
+          <div id="resultInfo" class="result-info" aria-live="polite"></div>
+          <div id="cards" class="cards"></div>
+          <div id="empty" class="empty" hidden><span>⌕</span><h3>ไม่พบรายการที่ตรงกัน</h3><p>ลองค้นด้วยรหัสรุ่นหรือเปลี่ยนตัวกรอง</p><button id="emptyClear" type="button">ล้างตัวกรอง</button></div>
+        </section>
+        <footer>อ้างอิง: <span id="sources"></span> · ข้อมูลในเว็บเป็นภาพรวมจากไฟล์แนบและไม่อัปเดตอัตโนมัติ</footer>
+      </div>
+    </main>
+  </div>
+  <div id="overlay" class="overlay" hidden></div>
+  <aside id="drawer" class="drawer" aria-label="รายละเอียดชุดอุปกรณ์" aria-modal="true" role="dialog" hidden><div id="drawerContent"></div></aside>
+  <script src="data/inventory.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
